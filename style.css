@@ -1,5 +1,5 @@
 /* Mona Sans & Hubot Sans Design System 
-  Base: 14px | Surface: #000000 
+  Project: Lum Network Reimagined (Premium Dark)
 */
 
 :root {
@@ -60,6 +60,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--color-surface-base);
     color: var(--color-text-primary);
@@ -89,25 +93,89 @@ p {
 a {
     color: var(--color-surface-raised);
     text-decoration: none;
-    transition: opacity var(--motion-fast);
+    transition: all var(--motion-fast);
 }
 
-a:hover {
-    opacity: 0.8;
+/* --- NAVIGATION (Custom Header) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all var(--motion-fast);
+    padding: var(--space-4) 0;
 }
 
-/* --- LAYOUT COMPONENTS --- */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-8);
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
 }
 
-.section-padding {
-    padding: 80px 0;
+.logo {
+    font-weight: var(--font-weight-black);
+    font-size: var(--font-size-md);
+    letter-spacing: 2px;
+    color: var(--color-text-primary);
+    text-transform: uppercase;
 }
 
-/* --- INTERACTIVE COMPONENTS --- */
+.logo span {
+    color: var(--color-surface-raised);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--space-8);
+}
+
+.nav-links a {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+}
+
+.nav-links a:hover {
+    color: var(--color-text-primary);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    padding-top: 160px;
+    padding-bottom: 100px;
+    background: radial-gradient(circle at 50% 30%, rgba(9, 105, 218, 0.15) 0%, var(--color-surface-base) 70%);
+    min-height: 80vh;
+}
+
+.hero-subtitle {
+    max-width: 600px;
+    margin: var(--space-5) auto var(--space-8);
+    font-size: var(--font-size-md);
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+}
+
+/* --- COMPONENTS --- */
+
+/* Badge */
+.badge {
+    background: rgba(9, 105, 218, 0.1);
+    border: 1px solid var(--color-surface-raised);
+    color: var(--color-surface-raised);
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: var(--space-5);
+    display: inline-block;
+}
 
 /* Buttons */
 .btn {
@@ -116,7 +184,7 @@ a:hover {
     justify-content: center;
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-sm);
-    padding: var(--space-4) var(--space-8);
+    padding: 12px var(--space-8);
     border-radius: var(--radius-md);
     cursor: pointer;
     transition: all var(--motion-fast) cubic-bezier(0.4, 0, 0.2, 1);
@@ -131,6 +199,7 @@ a:hover {
 .btn-primary:hover {
     filter: brightness(1.1);
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px var(--color-surface-raised);
 }
 
 .btn-secondary {
@@ -142,6 +211,7 @@ a:hover {
 .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.05);
     border-color: var(--color-text-primary);
+    transform: translateY(-2px);
 }
 
 /* Cards */
@@ -150,46 +220,37 @@ a:hover {
     border-radius: var(--radius-md);
     padding: var(--space-8);
     box-shadow: var(--shadow-2);
-    transition: box-shadow var(--motion-fast), transform var(--motion-fast);
+    transition: all var(--motion-fast);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .card:hover {
     box-shadow: var(--shadow-1);
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    border-color: rgba(255,255,255,0.1);
 }
 
-/* Inputs */
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
+.card-icon {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-4);
+    display: block;
 }
 
-input {
-    background: var(--color-surface-strong);
-    border: 1px solid var(--color-text-secondary);
-    border-radius: var(--radius-xs);
-    padding: var(--space-4);
-    color: var(--color-text-primary);
-    font-family: inherit;
-    transition: border-color var(--motion-instant);
+/* --- LAYOUT & UTILITIES --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-8);
 }
 
-input:focus {
-    outline: none;
-    border-color: var(--color-surface-raised);
-    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
+.section-padding {
+    padding: 100px 0;
 }
 
-/* --- ACCESSIBILITY --- */
-:focus-visible {
-    outline: 2px solid var(--color-surface-raised);
-    outline-offset: 4px;
-}
+.text-center { text-align: center; }
 
-/* --- UTILITIES --- */
 .text-gradient {
     background: linear-gradient(180deg, #ffffff 0%, #9198a1 100%);
     -webkit-background-clip: text;
@@ -208,8 +269,17 @@ input:focus {
     gap: var(--space-8);
 }
 
-/* Responsive Handling */
+/* --- ACCESSIBILITY --- */
+:focus-visible {
+    outline: 2px solid var(--color-surface-raised);
+    outline-offset: 4px;
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     h1 { font-size: var(--font-size-2xl); }
-    .section-padding { padding: 40px 0; }
+    .hero-section { padding-top: 120px; }
+    .nav-links { display: none; } /* Perlu Mobile Menu Logic di JS */
+    .section-padding { padding: 60px 0; }
+    .hero-actions { flex-direction: column; }
 }
