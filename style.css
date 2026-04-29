@@ -1,5 +1,6 @@
 /* Mona Sans & Hubot Sans Design System 
   Project: Lum Network Reimagined (Premium Dark)
+  Version: 2.0 (Integrated Interaction States)
 */
 
 :root {
@@ -96,7 +97,20 @@ a {
     transition: all var(--motion-fast);
 }
 
-/* --- NAVIGATION (Custom Header) --- */
+/* --- REVEAL ANIMATIONS (Triggered by script.js) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- NAVIGATION --- */
 .navbar {
     position: fixed;
     top: 0;
@@ -104,6 +118,13 @@ a {
     z-index: 1000;
     transition: all var(--motion-fast);
     padding: var(--space-4) 0;
+}
+
+.navbar--scrolled {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-2) 0 !important;
 }
 
 .nav-content {
@@ -214,6 +235,26 @@ a {
     transform: translateY(-2px);
 }
 
+.btn--pressed {
+    transform: scale(0.96) translateY(0) !important;
+}
+
+/* Spinner for Loading State */
+.spinner {
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 /* Cards */
 .card {
     background-color: var(--color-surface-strong);
@@ -238,7 +279,7 @@ a {
     display: block;
 }
 
-/* --- LAYOUT & UTILITIES --- */
+/* --- UTILITIES --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -279,7 +320,7 @@ a {
 @media (max-width: 768px) {
     h1 { font-size: var(--font-size-2xl); }
     .hero-section { padding-top: 120px; }
-    .nav-links { display: none; } /* Perlu Mobile Menu Logic di JS */
+    .nav-links { display: none; }
     .section-padding { padding: 60px 0; }
     .hero-actions { flex-direction: column; }
 }
