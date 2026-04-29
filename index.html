@@ -2,35 +2,56 @@
 <html lang="ms">
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Lum Network: Protokol terpencar pertama untuk membina kepercayaan pelanggan melalui ekonomi ganjaran."/>
+    
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Lum Network | The Reward Economy Infrastructure"/>
+    <meta property="og:description" content="Bina kepercayaan pelanggan melalui infrastruktur ganjaran blockchain yang telus."/>
+    <meta property="og:image" content="https://lum.network/assets/images/og1200x630.jpg"/>
+
     <title>Lum Network | The Reward Economy Infrastructure</title>
     
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
+
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
 <body>
-    <nav class="navbar">
+
+    <nav class="navbar" aria-label="Navigasi Utama">
         <div class="container nav-content">
-            <div class="logo">LUM<span>NETWORK</span></div>
-            <ul class="nav-links">
+            <a href="#" class="logo" aria-label="Laman Utama Lum Network">
+                LUM<span>NETWORK</span>
+            </a>
+            
+            <ul class="nav-links" role="list">
                 <li><a href="#ecosystem">Ecosystem</a></li>
                 <li><a href="#developers">Developers</a></li>
                 <li><a href="#governance">Governance</a></li>
             </ul>
-            <a href="#" class="btn btn-primary">Build Now</a>
+
+            <div class="nav-actions">
+                <button class="btn btn-primary" data-btn-loading="true">Build Now</button>
+                
+                <button class="btn-mobile-menu" aria-label="Buka Menu" style="display: none;">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <main>
+    <main id="main-content">
         <section class="hero-section flex-center">
             <div class="container text-center">
-                <span class="badge">DECENTRALIZED TRUST</span>
-                <h1 class="text-gradient">Build authentic trust<br>with your customers.</h1>
-                <p class="hero-subtitle">
-                    The first decentralized protocol designed for businesses to reward 
-                    engagement and verify authentic customer feedback in real-time.
+                <span class="badge reveal">Decentralized Trust</span>
+                <h1 class="text-gradient reveal">Build authentic trust<br>with your customers.</h1>
+                <p class="hero-subtitle reveal">
+                    Infrastruktur blockchain terpencar yang direka khas untuk perniagaan memberi ganjaran kepada penglibatan pelanggan dan mengesahkan maklum balas secara real-time.
                 </p>
-                <div class="hero-actions">
+                <div class="hero-actions reveal">
                     <button class="btn btn-primary">Get Started</button>
                     <button class="btn btn-secondary">Explore Explorer</button>
                 </div>
@@ -38,30 +59,48 @@
         </section>
 
         <section id="ecosystem" class="section-padding">
-            <div class="container grid-cols-3">
-                <div class="card">
-                    <div class="card-icon">⚡</div>
-                    <h3>Fast Consensus</h3>
-                    <p>Powered by Tendermint BFT, providing sub-second block finality for enterprise needs.</p>
+            <div class="container">
+                <div class="text-center" style="margin-bottom: var(--space-8);">
+                    <h2 class="reveal">Built for Scale</h2>
+                    <p class="reveal">Teknologi Web3 yang dipercayai oleh ekosistem ganjaran global.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💎</div>
-                    <h3>Transparent Rewards</h3>
-                    <p>Automated and verifiable reward distribution for community and business ecosystems.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🛡️</div>
-                    <h3>Secure Staking</h3>
-                    <p>Join 50+ professional validators securing the Lum Network decentralized infrastructure.</p>
+
+                <div class="grid-cols-3">
+                    <div class="card reveal">
+                        <div class="card-icon" aria-hidden="true">⚡</div>
+                        <h3>Fast Consensus</h3>
+                        <p>Dikuasakan oleh Tendermint BFT, memberikan pengesahan blok bawah satu saat untuk keperluan enterprise.</p>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="card-icon" aria-hidden="true">💎</div>
+                        <h3>Transparent Rewards</h3>
+                        <p>Pengagihan ganjaran yang automatik dan boleh disahkan untuk komuniti serta ekosistem perniagaan.</p>
+                    </div>
+
+                    <div class="card reveal">
+                        <div class="card-icon" aria-hidden="true">🛡️</div>
+                        <h3>Secure Staking</h3>
+                        <p>Sertai 50+ validator profesional yang menjaga keselamatan infrastruktur terpencar Lum Network.</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Lum Network. Built with Mona Sans System.</p>
+    <footer class="footer" style="padding: var(--space-8) 0; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container text-center">
+            <div class="logo" style="margin-bottom: var(--space-4); opacity: 0.6;">LUM<span>NETWORK</span></div>
+            <p style="font-size: var(--font-size-xs);">
+                &copy; 2026 Lum Network. Reka bentuk premium berasaskan Mona Sans & Hubot Sans.
+            </p>
+            <div style="margin-top: var(--space-4); display: flex; gap: var(--space-5); justify-content: center;">
+                <a href="#" style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">Twitter</a>
+                <a href="#" style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">Discord</a>
+                <a href="#" style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">GitHub</a>
+            </div>
         </div>
     </footer>
+
 </body>
 </html>
