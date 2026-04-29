@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mona Sans & Hubot Sans | Performance Interface</title>
+    
+    <link rel="stylesheet" href="fonts/mona-sans.css">
+    
+    <style>
+        :root {
+            /* Design Tokens */
+            --font-primary: 'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --color-surface-base: #000000;
+            --color-surface-strong: #0d1117;
+            --color-surface-raised: #0969da;
+            --color-text-primary: #f0f6fc;
+            --color-text-secondary: #9198a1;
+            
+            --space-5: 16px;
+            --space-8: 24px;
+            
+            --radius-md: 32px;
+            --motion-fast: 200ms;
+            
+            --shadow-1: rgba(255, 255, 255, 0.25) 0px 0px 0px 1px inset;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-surface-base);
+            color: var(--color-text-primary);
+            font-family: var(--font-primary);
+            font-size: 14px; /* font.size.base */
+            line-height: 1.25; /* font.lineHeight.base */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Section Styling */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: var(--space-8);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px; /* font.size.4xl */
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: var(--space-5);
+            background: linear-gradient(180deg, #ffffff 0%, #9198a1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px; /* font.size.lg */
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin-bottom: var(--space-8);
+        }
+
+        /* Component: Primary Button */
+        .btn-primary {
+            background-color: var(--color-surface-raised);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform var(--motion-fast), filter var(--motion-fast);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .btn-primary:focus-visible {
+            outline: 2px solid var(--color-surface-raised);
+            outline-offset: 4px;
+        }
+
+        /* Component: Feature Card (Preview) */
+        .card {
+            background-color: var(--color-surface-strong);
+            box-shadow: var(--shadow-1);
+            padding: var(--space-8);
+            border-radius: var(--radius-md);
+            margin-top: 40px;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav style="padding: var(--space-8); display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: 800; font-size: 18px;">MONA.SYS</div>
+        <div style="display: flex; gap: var(--space-8);">
+            <a href="#" style="color: var(--color-text-secondary); text-decoration: none;">Docs</a>
+            <a href="#" style="color: var(--color-text-secondary); text-decoration: none;">GitHub</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <h1>Mona Sans & Hubot</h1>
+        <p>The variable font system designed for high-performance marketing interfaces and technical documentation.</p>
+        
+        <div style="display: flex; gap: 16px;">
+            <a href="#" class="btn-primary">Get Started</a>
+            <button style="background: none; border: 1px solid var(--color-text-secondary); color: white; padding: 12px 28px; border-radius: var(--radius-md); cursor: pointer;">
+                View Demo
+            </button>
+        </div>
+
+        <div class="card">
+            <code style="color: var(--color-surface-raised);">npm install @mona-sans/design-system</code>
+        </div>
+    </main>
+
+</body>
+</html>
