@@ -1,0 +1,215 @@
+/* Mona Sans & Hubot Sans Design System 
+  Base: 14px | Surface: #000000 
+*/
+
+:root {
+    /* --- COLOR TOKENS --- */
+    --color-surface-base: #000000;
+    --color-surface-strong: #0d1117;
+    --color-surface-raised: #0969da;
+    
+    --color-text-primary: #f0f6fc;
+    --color-text-secondary: #9198a1;
+    --color-text-tertiary: #ffffff;
+    --color-text-inverse: #1f2328;
+
+    /* --- TYPOGRAPHY TOKENS --- */
+    --font-family-primary: 'Mona Sans VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-weight-base: 400;
+    --font-weight-bold: 700;
+    --font-weight-black: 800;
+
+    /* Typography Scale */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 45px;
+    --font-size-3xl: 48px;
+    --font-size-4xl: 56px;
+
+    /* --- SPACING SCALE --- */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 10px;
+    --space-4: 12px;
+    --space-5: 16px;
+    --space-6: 18px;
+    --space-7: 20px;
+    --space-8: 24px;
+
+    /* --- RADIUS & SHADOW --- */
+    --radius-xs: 6px;
+    --radius-sm: 10px;
+    --radius-md: 32px;
+
+    --shadow-1: rgba(255, 255, 255, 0.25) 0px 0px 0px 1px inset;
+    --shadow-2: rgba(255, 255, 255, 0) 0px 0px 0px 1px inset;
+
+    /* --- MOTION --- */
+    --motion-instant: 80ms;
+    --motion-fast: 200ms;
+    --motion-normal: 500ms;
+}
+
+/* --- RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-surface-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    line-height: 1.25;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3, .display-text {
+    font-weight: var(--font-weight-black);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+
+p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-surface-raised);
+    text-decoration: none;
+    transition: opacity var(--motion-fast);
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* --- LAYOUT COMPONENTS --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-8);
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+/* --- INTERACTIVE COMPONENTS --- */
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--motion-fast) cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-surface-raised);
+    color: var(--color-text-tertiary);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-text-secondary);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-text-primary);
+}
+
+/* Cards */
+.card {
+    background-color: var(--color-surface-strong);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-2);
+    transition: box-shadow var(--motion-fast), transform var(--motion-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-1);
+    transform: translateY(-4px);
+}
+
+/* Inputs */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+input {
+    background: var(--color-surface-strong);
+    border: 1px solid var(--color-text-secondary);
+    border-radius: var(--radius-xs);
+    padding: var(--space-4);
+    color: var(--color-text-primary);
+    font-family: inherit;
+    transition: border-color var(--motion-instant);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--color-surface-raised);
+    box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
+}
+
+/* --- ACCESSIBILITY --- */
+:focus-visible {
+    outline: 2px solid var(--color-surface-raised);
+    outline-offset: 4px;
+}
+
+/* --- UTILITIES --- */
+.text-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #9198a1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-cols-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-8);
+}
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+    h1 { font-size: var(--font-size-2xl); }
+    .section-padding { padding: 40px 0; }
+}
