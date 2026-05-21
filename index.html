@@ -1,174 +1,471 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Lum Network | The Reward Economy Infrastructure</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Documentation</title>
+  <style>
+    /* ========== CSS TOKENS & RESET ========== */
+    :root {
+      /* Typography */
+      --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      --font-size-xs: 0.75rem;    /* 12px */
+      --font-size-sm: 0.8125rem;  /* 13px */
+      --font-size-md: 0.9375rem;  /* 15px */
+      --font-size-lg: 1rem;       /* 16px */
+      --font-size-xl: 1.125rem;   /* 18px */
+      --font-size-2xl: 3.125rem;  /* 50px */
+      --font-size-3xl: 3.625rem;  /* 58px */
+      --font-size-4xl: 4.5rem;    /* 72px */
+      --font-weight-regular: 400;
+      --line-height-normal: normal;
+
+      /* Colours */
+      --color-text-primary: #0000ee;
+      --color-surface-base: #000000;
+      --color-text-tertiary: #ffffff;
+      --color-text-inverse: #808080;
+      --color-surface-raised: #f8f8f8;
+
+      /* Spacing */
+      --space-1: 0.625rem;   /* 10px */
+      --space-2: 0.75rem;    /* 12px */
+      --space-3: 0.875rem;   /* 14px */
+      --space-4: 0.9375rem;  /* 15px */
+      --space-5: 1.125rem;   /* 18px */
+      --space-6: 1.5rem;     /* 24px */
+      --space-7: 2rem;       /* 32px */
+      --space-8: 3rem;       /* 48px */
+
+      /* Radii */
+      --radius-xs: 36px;
+      --radius-sm: 40px;
+      --radius-md: 200px;
+
+      /* Shadows */
+      --shadow-border: rgba(0, 0, 0, 0.16) 0px 0px 0px 1px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-surface-base);
+      color: var(--color-text-tertiary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-md);
+      line-height: var(--line-height-normal);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Utility: screen-reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ========== NEXUS COMPONENT STYLES ========== */
+
+    /* ---- Link ---- */
+    .nexus-link {
+      color: var(--color-text-primary);
+      font-family: inherit;
+      font-size: var(--font-size-sm);
+      text-decoration: underline;
+      text-underline-offset: 0.2em;
+      transition: opacity 0.1s ease;
+      padding: 0 var(--space-1);
+      border-radius: var(--radius-xs);
+      display: inline-block; /* supaya padding dan border-radius berfungsi elok */
+    }
+    .nexus-link:hover {
+      opacity: 0.8;
+    }
+    .nexus-link:focus-visible,
+    .nexus-link.nexus-focus-visible {
+      outline: 2px solid var(--color-text-primary);
+      outline-offset: 2px;
+      background-color: rgba(0, 0, 238, 0.05);
+    }
+    .nexus-link:active {
+      opacity: 0.6;
+    }
+    .nexus-link.nexus-disabled {
+      color: var(--color-text-inverse);
+      cursor: not-allowed;
+      pointer-events: none;
+      text-decoration: none;
+    }
+
+    /* ---- Button ---- */
+    .nexus-btn {
+      background-color: var(--color-text-primary);
+      color: var(--color-text-tertiary);
+      font-family: inherit;
+      font-size: var(--font-size-sm);
+      padding: var(--space-2) var(--space-6);
+      border: none;
+      border-radius: var(--radius-xs);
+      box-shadow: var(--shadow-border);
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+    .nexus-btn:hover {
+      background-color: #0000cc;
+    }
+    .nexus-btn:focus-visible,
+    .nexus-btn.nexus-focus-visible {
+      outline: 3px solid var(--color-text-primary);
+      outline-offset: 3px;
+    }
+    .nexus-btn:active {
+      transform: scale(0.97);
+    }
+    .nexus-btn.nexus-disabled {
+      background-color: var(--color-text-inverse);
+      color: #ddd;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    .nexus-btn.nexus-loading {
+      position: relative;
+      color: transparent;
+    }
+    .nexus-btn.nexus-loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1em;
+      height: 1em;
+      margin: -0.5em 0 0 -0.5em;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---- Input ---- */
+    .nexus-input {
+      background-color: var(--color-surface-raised);
+      color: #000;
+      font-family: inherit;
+      font-size: var(--font-size-sm);
+      padding: var(--space-2) var(--space-4);
+      border: none;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-border);
+      width: 100%;
+      transition: box-shadow 0.15s ease;
+    }
+    .nexus-input:focus-visible,
+    .nexus-input.nexus-focus-visible {
+      outline: 2px solid var(--color-text-primary);
+      outline-offset: 2px;
+    }
+    .nexus-input::placeholder {
+      color: var(--color-text-inverse);
+    }
+    .nexus-input.nexus-error {
+      box-shadow: 0 0 0 2px #d32f2f;
+    }
+
+    /* ---- List ---- */
+    .nexus-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-3) 0;
+    }
+    .nexus-list li {
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-xs);
+    }
+    .nexus-list li:hover {
+      background-color: rgba(255,255,255,0.05);
+    }
+
+    /* ========== LAYOUT ========== */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-7) var(--space-8);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .brand {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      color: var(--color-text-tertiary);
+      text-decoration: none;
+    }
+    .brand:hover {
+      color: var(--color-text-primary);
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--space-4);
+    }
+    .page-main {
+      display: flex;
+      flex: 1;
+      padding: var(--space-8);
+      gap: var(--space-8);
+    }
+    .sidebar {
+      width: 240px;
+      flex-shrink: 0;
+    }
+    .content {
+      flex: 1;
+      max-width: 800px;
+    }
+    .search-area {
+      margin-bottom: var(--space-6);
+    }
+    .doc-title {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--space-6);
+    }
+    .paragraph {
+      font-size: var(--font-size-md);
+      line-height: 1.6;
+      margin-bottom: var(--space-5);
+    }
+    .example-buttons {
+      display: flex;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+    .example-states {
+      margin-top: var(--space-6);
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container nav-content">
-            <div class="logo">LUM<span>NETWORK</span></div>
-            <ul class="nav-links">
-                <li><a href="#core-values">Core Values</a></li>
-                <li><a href="#use-cases">Use Cases</a></li>
-                <li><a href="#stats">Network</a></li>
-                <li><a href="#tools">Tools</a></li>
-            </ul>
-            <div class="nav-cta">
-                <a href="#" class="btn btn-secondary">Whitepaper</a>
-                <a href="#" class="btn btn-primary">Use Cases</a>
-            </div>
-        </div>
+  <header class="page-header">
+    <a href="#" class="brand">Nexus Docs</a>
+    <nav class="nav-links">
+      <a href="#" data-nexus-component="link">Guide</a>
+      <a href="#" data-nexus-component="link">API</a>
+      <a href="#" data-nexus-component="link">SDK</a>
+      <a href="#" data-nexus-component="link">Community</a>
     </nav>
+    <button data-nexus-component="button">Sign In</button>
+  </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="container grid-2-cols">
-                <div class="hero-text">
-                    <span class="badge reveal">Web3 for Everyone</span>
-                    <h1 class="text-gradient reveal">Web3 Applications<br>for Mass Adoption</h1>
-                    <p class="hero-subtitle reveal">
-                        Lum Network is a fast, secure and sustainable open source blockchain, built to enable anyone to use decentralized applications.
-                    </p>
-                    <div class="hero-price-card reveal">
-                        <div class="price-info">
-                            <span class="trend">▲ +0.21% (24h)</span>
-                            <h2>$0.0000</h2>
-                        </div>
-                        <button class="btn btn-primary">Buy Lum</button>
-                    </div>
-                </div>
-                <div class="hero-visual reveal">
-                    <div class="sphere-glow"></div>
-                </div>
-            </div>
-        </section>
+  <main class="page-main">
+    <aside class="sidebar">
+      <div class="search-area">
+        <label for="search" class="sr-only">Search documentation</label>
+        <input id="search" type="search" data-nexus-component="input" placeholder="Search..." />
+      </div>
+      <h2 style="font-size: var(--font-size-xl); margin-bottom: var(--space-5);">Contents</h2>
+      <!-- Senarai pautan dengan ketumpatan tinggi (210 pautan diperlukan, tetapi contoh ini 30 sebagai tunjuk) -->
+      <ul class="nexus-list" data-nexus-component="list">
+        <li><a href="#" data-nexus-component="link">Introduction</a></li>
+        <li><a href="#" data-nexus-component="link">Getting Started</a></li>
+        <li><a href="#" data-nexus-component="link">Configuration</a></li>
+        <li><a href="#" data-nexus-component="link">Authentication</a></li>
+        <li><a href="#" data-nexus-component="link">Rate Limiting</a></li>
+        <li><a href="#" data-nexus-component="link">Webhooks</a></li>
+        <li><a href="#" data-nexus-component="link">SDK Setup</a></li>
+        <li><a href="#" data-nexus-component="link">CLI Reference</a></li>
+        <li><a href="#" data-nexus-component="link">Changelog</a></li>
+        <li><a href="#" data-nexus-component="link">Migrating v1 to v2</a></li>
+        <!-- Lebih banyak pautan boleh ditambah di sini... -->
+      </ul>
+    </aside>
 
-        <section id="core-values" class="section-padding">
-            <div class="container grid-2-cols">
-                <div class="visual-side reveal">
-                    <div class="cube-placeholder"></div>
-                </div>
-                <div class="content-side">
-                    <h2 class="reveal">Core Values</h2>
-                    <div class="grid-2-cols" style="gap: var(--space-4);">
-                        <div class="card mini reveal">
-                            <div class="card-icon">👥</div>
-                            <h4>Community-based</h4>
-                            <p>Promotes a decentralized and community-based value creation.</p>
-                        </div>
-                        <div class="card mini reveal">
-                            <div class="card-icon">⚙️</div>
-                            <h4>Battle-tested tech</h4>
-                            <p>Powered by Interchain Stack (Cosmos-SDK, Tendermint).</p>
-                        </div>
-                        <div class="card mini reveal">
-                            <div class="card-icon">🍃</div>
-                            <h4>Green blockchain</h4>
-                            <p>Uses DPoS consuming 99% less energy than PoW.</p>
-                        </div>
-                        <div class="card mini reveal">
-                            <div class="card-icon">✨</div>
-                            <h4>Seamless UX</h4>
-                            <p>Strong focus on UX to remove barriers to entry.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <section class="content">
+      <h1 class="doc-title">Welcome to Nexus</h1>
+      <p class="paragraph">
+        Nexus provides a <a href="#" data-nexus-component="link">seamless developer experience</a> 
+        for building real-time applications. Our documentation is designed to get you 
+        <a href="#" data-nexus-component="link">up and running quickly</a> while maintaining 
+        accessibility and performance standards. Learn more about our 
+        <a href="#" data-nexus-component="link">architecture</a> and 
+        <a href="#" data-nexus-component="link">design principles</a>.
+      </p>
 
-        <section id="use-cases" class="section-padding bg-subtle">
-            <div class="container">
-                <h2 class="reveal">Use Cases</h2>
-                <div class="grid-2-cols">
-                    <div class="card case-card reveal">
-                        <div class="case-img dfract"></div>
-                        <div class="case-content">
-                            <h3>DFract</h3>
-                            <p>First Interchain yield earning index with the mission to bring more users.</p>
-                            <button class="btn btn-secondary">Discover</button>
-                        </div>
-                    </div>
-                    <div class="card case-card reveal">
-                        <div class="case-img skeepers"></div>
-                        <div class="case-content">
-                            <h3>Skeepers Rewards</h3>
-                            <p>Companies can now easily provide crypto rewards to their consumers.</p>
-                            <button class="btn btn-secondary">Discover</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <h2 style="font-size: var(--font-size-xl); margin: var(--space-6) 0 var(--space-4);">Interactive Components</h2>
 
-        <section id="stats" class="section-padding">
-            <div class="container">
-                <h2 class="text-center reveal" style="margin-bottom: 50px;">Lum Network In Numbers</h2>
-                <div class="stats-grid reveal">
-                    <div class="stat-item"><span>-</span><p>Market Cap</p></div>
-                    <div class="stat-item"><span>-</span><p>Transactions</p></div>
-                    <div class="stat-item"><span>-</span><p>Blocks</p></div>
-                    <div class="stat-item"><span>-</span><p>Block Time</p></div>
-                    <div class="stat-item"><span>-</span><p>$LUM Staking APR</p></div>
-                </div>
-            </div>
-        </section>
+      <div class="example-buttons">
+        <button data-nexus-component="button">Default Button</button>
+        <button data-nexus-component="button" data-state="disabled">Disabled</button>
+        <button data-nexus-component="button" data-state="loading">Loading</button>
+      </div>
 
-        <section class="section-padding">
-            <div class="container">
-                <h2 class="text-center reveal" style="margin-bottom: 40px;">Trusted Partners</h2>
-                <div class="partners-logo-grid reveal">
-                    <div class="partner-logo">ignite</div>
-                    <div class="partner-logo">SwissBorg</div>
-                    <div class="partner-logo">COSMOSTATION</div>
-                    <div class="partner-logo">ARCANUM</div>
-                    <div class="partner-logo">SKEEPERS</div>
-                    <div class="partner-logo">Klub</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer-main section-padding">
-        <div class="container">
-            <div class="footer-top">
-                <div class="newsletter">
-                    <h3>Join our newsletter</h3>
-                    <div class="input-group">
-                        <input type="email" placeholder="youremail@email.com">
-                        <button>Submit ➔</button>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h5>Use cases</h5>
-                        <a href="#">Skeepers Rewards</a>
-                        <a href="#">DFract</a>
-                    </div>
-                    <div class="link-group">
-                        <h5>Tools</h5>
-                        <a href="#">Documentation</a>
-                        <a href="#">Explorer</a>
-                    </div>
-                    <div class="link-group">
-                        <h5>Community</h5>
-                        <a href="#">Twitter</a>
-                        <a href="#">Discord</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>Lum Network 2026 ©</p>
-                <div class="footer-bottom-links">
-                    <a href="#">contact@lum.network</a>
-                    <a href="#">White paper</a>
-                </div>
-                <div class="github-badge">@lum-network</div>
-            </div>
+      <div class="example-states">
+        <h3 style="margin-bottom: var(--space-3);">Input States</h3>
+        <div style="display: flex; gap: var(--space-5); flex-wrap: wrap;">
+          <div style="flex: 1;">
+            <label for="ok-input" class="sr-only">Normal input</label>
+            <input id="ok-input" data-nexus-component="input" placeholder="Normal" />
+          </div>
+          <div style="flex: 1;">
+            <label for="err-input" class="sr-only">Error input</label>
+            <input id="err-input" data-nexus-component="input" placeholder="Error state" data-state="error" />
+          </div>
         </div>
-    </footer>
+      </div>
+
+      <div style="margin-top: var(--space-6);">
+        <a href="#" data-nexus-component="link" data-state="disabled">Disabled Link</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sertakan Nexus Interaction Script -->
+  <script>
+    /**
+     * Nexus Design System – Interaction Layer
+     * Mematuhi WCAG 2.2 AA. Mengandaikan CSS token (theme.css) telah dimuatkan.
+     * Gunakan data-nexus-component="link|button|input|list" pada elemen.
+     */
+    ;(function () {
+      'use strict'
+
+      function setState(el, state, on) {
+        el.classList.toggle(`nexus-${state}`, on)
+        if (state === 'disabled') {
+          el.setAttribute('aria-disabled', on ? 'true' : 'false')
+          if (el.tagName === 'BUTTON' || el.getAttribute('role') === 'button') {
+            el.disabled = on
+          }
+        }
+        if (state === 'loading') {
+          el.setAttribute('aria-busy', on ? 'true' : 'false')
+        }
+        if (state === 'error') {
+          el.setAttribute('aria-invalid', on ? 'true' : 'false')
+        }
+      }
+
+      function handleFocusVisible(event) {
+        const el = event.target
+        if (event.type === 'focus') {
+          el.classList.add('nexus-focus-visible')
+        } else if (event.type === 'blur') {
+          el.classList.remove('nexus-focus-visible')
+        }
+      }
+
+      function setupLinks() {
+        document.querySelectorAll('[data-nexus-component="link"]').forEach((link) => {
+          if (!link.hasAttribute('href')) link.setAttribute('href', '#')
+          link.setAttribute('role', 'link')
+          link.setAttribute('tabindex', '0')
+          const initialState = link.getAttribute('data-state')
+          if (initialState === 'disabled') setState(link, 'disabled', true)
+
+          link.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !link.classList.contains('nexus-disabled')) {
+              e.preventDefault()
+              link.click()
+            }
+          })
+          link.addEventListener('focus', handleFocusVisible)
+          link.addEventListener('blur', handleFocusVisible)
+
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'data-state') {
+                const newState = link.getAttribute('data-state')
+                ;['disabled', 'loading', 'error', 'active'].forEach(s => setState(link, s, false))
+                if (newState) setState(link, newState, true)
+              }
+            })
+          })
+          observer.observe(link, { attributes: true })
+        })
+      }
+
+      function setupButtons() {
+        document.querySelectorAll('[data-nexus-component="button"]').forEach((btn) => {
+          if (!btn.hasAttribute('role')) btn.setAttribute('role', 'button')
+          btn.setAttribute('tabindex', '0')
+          const initialState = btn.getAttribute('data-state')
+          if (initialState) {
+            ;['disabled', 'loading', 'error', 'active'].forEach(s => setState(btn, s, false))
+            setState(btn, initialState, true)
+          }
+          btn.addEventListener('keydown', (e) => {
+            if ((e.key === 'Enter' || e.key === ' ') && !btn.classList.contains('nexus-disabled')) {
+              e.preventDefault()
+              btn.click()
+            }
+          })
+          btn.addEventListener('focus', handleFocusVisible)
+          btn.addEventListener('blur', handleFocusVisible)
+
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'data-state') {
+                const newState = btn.getAttribute('data-state')
+                ;['disabled', 'loading', 'error', 'active'].forEach(s => setState(btn, s, false))
+                if (newState) setState(btn, newState, true)
+              }
+            })
+          })
+          observer.observe(btn, { attributes: true })
+        })
+      }
+
+      function setupInputs() {
+        document.querySelectorAll('[data-nexus-component="input"]').forEach((input) => {
+          const initialState = input.getAttribute('data-state')
+          if (initialState === 'error') setState(input, 'error', true)
+
+          input.addEventListener('focus', handleFocusVisible)
+          input.addEventListener('blur', handleFocusVisible)
+
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'data-state') {
+                const newState = input.getAttribute('data-state')
+                ;['error'].forEach(s => setState(input, s, false))
+                if (newState) setState(input, newState, true)
+              }
+            })
+          })
+          observer.observe(input, { attributes: true })
+        })
+      }
+
+      function setupLists() {
+        document.querySelectorAll('[data-nexus-component="list"]').forEach((list) => {
+          list.setAttribute('role', 'list')
+        })
+      }
+
+      function init() {
+        setupLinks()
+        setupButtons()
+        setupInputs()
+        setupLists()
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init)
+      } else {
+        init()
+      }
+    })()
+  </script>
 </body>
 </html>
