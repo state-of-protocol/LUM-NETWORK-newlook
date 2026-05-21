@@ -21,8 +21,7 @@
   --color-disabled: #555;
 
   /* Tipografi – fon utama Nexus */
-  --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, sans-serif;
+  --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'DM Mono', monospace;
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.8125rem;  /* 13px */
@@ -64,9 +63,7 @@
 }
 
 /* ---------- 2. RESET & BASE ---------- */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -114,8 +111,7 @@ body {
   text-decoration: none;
   padding: 0 var(--space-1);
   border-radius: var(--radius-sm);
-  transition: color var(--motion-instant),
-    background-color var(--motion-instant);
+  transition: color var(--motion-instant), background-color var(--motion-instant);
   display: inline-block;
   cursor: pointer;
 }
@@ -175,8 +171,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: var(--space-1);
-  transition: background-color var(--motion-fast),
-    transform var(--motion-instant), box-shadow var(--motion-instant);
+  transition: background-color var(--motion-fast), transform var(--motion-instant), box-shadow var(--motion-instant);
   line-height: 1.2;
   user-select: none;
   white-space: nowrap;
@@ -191,7 +186,7 @@ body {
 }
 .nexus-btn:active {
   transform: scale(0.97);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
 }
 .nexus-btn:disabled,
 .nexus-btn.nexus-disabled {
@@ -214,7 +209,7 @@ body {
   width: 1.2em;
   height: 1.2em;
   margin: -0.6em 0 0 -0.6em;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255,255,255,0.3);
   border-top-color: #fff;
   border-radius: 50%;
   animation: nexus-spin 0.6s linear infinite;
@@ -225,9 +220,7 @@ body {
 }
 
 @keyframes nexus-spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 /* ---- Input ---- */
@@ -335,8 +328,7 @@ body {
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-xs);
   text-decoration: none;
-  transition: background-color var(--motion-instant),
-    color var(--motion-instant);
+  transition: background-color var(--motion-instant), color var(--motion-instant);
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);
@@ -404,7 +396,7 @@ body {
 .demo-section {
   margin-top: var(--space-7);
   padding: var(--space-6);
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba(255,255,255,0.03);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border-subtle);
 }
@@ -426,17 +418,6 @@ body {
 .demo-col {
   flex: 1;
   min-width: 180px;
-}
-
-/* ---- Nota Aksesibiliti ---- */
-.note-accessibility {
-  margin-top: var(--space-6);
-  padding: var(--space-4);
-  background: rgba(0, 149, 255, 0.1);
-  border-left: 3px solid var(--color-accent);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary-on-dark);
 }
 
 /* ---- Pengaki ---- */
@@ -496,7 +477,7 @@ body {
 
 @media (max-width: 640px) {
   .nav-links {
-    display: none;
+    display: none; /* Boleh ditambah butang menu pada masa hadapan */
   }
 
   .page-footer {
